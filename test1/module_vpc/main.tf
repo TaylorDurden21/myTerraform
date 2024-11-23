@@ -18,12 +18,14 @@ resource "aws_internet_gateway" "this" {
 resource "aws_route_table" "this" {
   vpc_id = aws_vpc.this.id
 
-  route = {
+  #Route lcoale pour le VPC / Subnet
+  route {
     cidr_block = aws_vpc.this.cidr_block
-    gataway_id = "local"
+    gateway_id = "local"
   }
 
-  route{
+  # Route par défaut vers internet Gateway
+  route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.this.id
   }
@@ -64,7 +66,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh_ingress" {
   ip_protocol = "tcp"
 }
 
-resource "aws_vpc_security_group_engress_rule" "allow_all_engress" {
+resource "aws_vpc_security_group_ingress_rule" "allow_all_engress" {
   security_group_id = aws_security_group.this.id
   cidr_ipv4 = "0.0.0.0/0"
   ip_protocol = "-1"
