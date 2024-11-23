@@ -16,5 +16,5 @@ resource "aws_instance" "my-instance" {
     associate_public_ip_address = true
     subnet_id = module.vpc.subnet_id
     vpc_security_group_ids = [module.vpc.security_group_id]
-    instance_type = "t3.micro"
+    instance_type = "t2.micro"
 }
