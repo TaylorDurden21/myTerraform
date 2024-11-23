@@ -12,9 +12,9 @@ module "vpc" {
 }
 
 resource "aws_instance" "my-instance" {
-    ami = data.aws_ssm_parameter.this.name
+    ami = data.aws_ssm_parameter.this.value
     associate_public_ip_address = true
     subnet_id = module.vpc.subnet_id
-    vpc_security_group_ids = [module.vpc.security_group_id.value]
+    vpc_security_group_ids = [module.vpc.security_group_id]
     instance_type = "t3.micro"
 }
