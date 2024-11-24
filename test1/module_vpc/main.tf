@@ -18,7 +18,7 @@ resource "aws_internet_gateway" "this" {
 resource "aws_route_table" "this" {
   vpc_id = aws_vpc.this.id
 
-  #Route lcoale pour le VPC / Subnet
+  #Route locale pour le VPC / Subnet
   route {
     cidr_block = aws_vpc.this.cidr_block
     gateway_id = "local"
