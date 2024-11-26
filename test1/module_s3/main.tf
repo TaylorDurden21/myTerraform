@@ -21,7 +21,7 @@ resource "aws_s3_bucket" "this" {
 
 resource "aws_s3_bucket_website_configuration" "this" {
   count = var.static_web_S3 ? 1 : 0
-  bucket = "tfgenerate-${data.aws_caller_identity.current.account_id}-${random_string.ramdom}"
+  bucket = "tfgeneratewebsite-${data.aws_caller_identity.current.account_id}-${random_string.ramdom}"
 
   index_document {
     suffix = var.index_static_web_S3

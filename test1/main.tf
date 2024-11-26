@@ -11,6 +11,13 @@ module "vpc" {
   region = var.region
 }
 
+module "S3" {
+  source = "./module_s3"
+  region = var.region
+  static_web_S3 = true
+  index_static_web_S3 ="./web_source/index.html"
+}
+
 resource "aws_instance" "my-instance" {
   ami = data.aws_ssm_parameter.this.value
   associate_public_ip_address = true
