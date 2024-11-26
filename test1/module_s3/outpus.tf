@@ -3,5 +3,5 @@
 
 
 output "addrese_DNS_web_static_S3" {
-  value = aws_s3_bucket_website_configuration.this.website_endpoint
+  value = aws_s3_bucket_website_configuration.this[0].website_endpoint
 }
