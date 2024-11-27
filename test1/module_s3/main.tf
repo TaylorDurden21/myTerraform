@@ -11,7 +11,6 @@ resource "random_string" "ramdom" {
 }
 
 resource "aws_s3_bucket" "this" {
-  count = var.static_web_S3 ? 1 : 0
   bucket = "tfgenerate-${data.aws_caller_identity.current.account_id}-${random_string.ramdom.result}"
 
   tags = {
@@ -21,10 +20,20 @@ resource "aws_s3_bucket" "this" {
 
 resource "aws_s3_bucket_website_configuration" "this" {
   count = var.static_web_S3 ? 1 : 0
-  bucket = "tfgeneratewebsite-${data.aws_caller_identity.current.account_id}-${random_string.ramdom.result}"
+  bucket = aws_s3_bucket.this.id
 
   index_document {
-    suffix = var.index_static_web_S3
+    suffix = "index.html"
   }
 
+  error_document {
+    key = "error.html"
+  }
+}
+
+resource "aws_s3_account_public_access_block" "public_acces_block" {
+  count = var.index_static_web_S3 ? 1 : 0
+  block_public_acls = true
+  block_public_policy = true
+  
 }
