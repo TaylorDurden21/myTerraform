@@ -1,2 +1,4 @@
 Hello ceci est un texte.
 Bonjour je suis Edward Norton. 
+
+Modification de ce fichier depuis mon MacBook.
