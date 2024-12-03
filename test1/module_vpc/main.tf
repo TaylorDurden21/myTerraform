@@ -74,7 +74,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_egress" {
 
 # VPC - Subnet - Internet Gateway - Route Table - Route table association - SG (allow http & SSH) 
 # S3 Module 
-# Alb module
+#alb module + AMI module
 # Secret Manager module 
-# Module AMI
-# Générer une AMI puis la déployer via un template sur un EC2 
+#Module AMI
+#Générer une AMI puis la déployer via un template sur un EC2 
