@@ -32,7 +32,7 @@ resource "aws_s3_bucket_website_configuration" "this" {
 }
 
 resource "aws_s3_account_public_access_block" "public_acces_block" {
-  count = var.static_web_S3 ? 1 : 0
+  account_id = data.aws_caller_identity.current.account_id
   block_public_acls = false
   block_public_policy = false
   ignore_public_acls = false
