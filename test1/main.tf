@@ -24,4 +24,8 @@ resource "aws_instance" "my-instance" {
   subnet_id = module.vpc.subnet_id
   vpc_security_group_ids = [module.vpc.security_group_id]
   instance_type = "t2.micro"
+
+  tags = {
+    Name  = "My_EC2_generate_by_terraform" 
+  }
 }

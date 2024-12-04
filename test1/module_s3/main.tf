@@ -32,6 +32,7 @@ resource "aws_s3_bucket_website_configuration" "this" {
 }
 
 resource "aws_s3_account_public_access_block" "public_acces_block" {
+  bucket = aws_s3_bucket.this.id
   account_id = data.aws_caller_identity.current.account_id
   block_public_acls = false
   block_public_policy = false
