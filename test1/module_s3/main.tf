@@ -48,6 +48,7 @@ resource "aws_s3_object" "upload_object" {
 }
 
 resource "aws_s3_bucket_policy" "allow_from_everyone" {
+  depends_on = [ aws_s3_account_public_access_block.public_acces_block ]
   bucket = aws_s3_bucket.this.id
   policy = jsonencode(
     {
