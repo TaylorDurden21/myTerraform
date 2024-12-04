@@ -52,7 +52,7 @@ resource "aws_security_group" "this" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_http_ingress" {
   security_group_id = aws_security_group.this.id
-  cidr_ipv4 = aws_vpc.this.cidr_block
+  cidr_ipv4 = "0.0.0.0/0"
   from_port = 80
   to_port = 80
   ip_protocol = "tcp"

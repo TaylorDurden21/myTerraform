@@ -31,8 +31,9 @@ resource "aws_s3_bucket_website_configuration" "this" {
   }
 }
 
+
+#Impossible de associer ce block pour le moment
 resource "aws_s3_account_public_access_block" "public_acces_block" {
-  bucket = aws_s3_bucket.this.id
   account_id = data.aws_caller_identity.current.account_id
   block_public_acls = false
   block_public_policy = false
@@ -48,6 +49,7 @@ resource "aws_s3_object" "upload_object" {
   content_type = "text/html"
 }
 
+#Impossible de mettre en place un S3 visible en public car blocage de mise en public du S3 
 resource "aws_s3_bucket_policy" "allow_from_everyone" {
   depends_on = [ aws_s3_account_public_access_block.public_acces_block ]
   bucket = aws_s3_bucket.this.id
