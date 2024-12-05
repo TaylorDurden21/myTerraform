@@ -83,7 +83,7 @@ resource "aws_instance" "my-instance" {
   sudo yum install -y httpd
   sudo systemctl start httpd
   sudo systemctl enable httpd
-  aws s3 cp s3://${aws_s3_object.web_index.id} /home/ec2-user/
+  aws s3 cp s3://${data.aws_s3_object.web_index.id} /home/ec2-user/
   sudo mv /home/ec2-user/index.html /var/www/html/
 
   EOF
