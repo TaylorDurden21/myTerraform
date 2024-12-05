@@ -18,10 +18,6 @@ module "S3" {
   objet_to_upload = "./web_source"
 }
 
-data "aws_iam_policy" "name" {
-  
-}
-
 #Création d'un role pour l'EC2 pour prendre objet dans S3
 resource "aws_iam_role" "ec2_role" {
   name = "ec2_s3_acess_role"
