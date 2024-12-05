@@ -3,7 +3,7 @@ output "ec2_ID" {
 }
 
 output "s3_index_object_uri" {
-  value = data.aws_s3_object.web_index.key
+  value = data.aws_s3_object.web_index
 }
 
 output "testPrint" {
