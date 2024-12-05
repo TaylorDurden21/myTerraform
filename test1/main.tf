@@ -49,6 +49,22 @@ resource "aws_iam_instance_profile" "ec2_instance_profile" {
   role = aws_iam_role.ec2_role.name
 }
 
+#Obtenir les uri des objets stocké dans un S3
+data "aws_s3_objects" "web_folder" {
+  bucket = module.S3.bucket_name
+}
+
+data "aws_s3_object" "web_index"{
+  bucket = module.S3.bucket_name
+  key =lookup(
+    data.aws_s3_objects.web_folder.keys,
+    "index.html",
+    "not found"
+  )
+}
+
+# {for o in data.aws_s3_bucket_objects.data.aws_s3_objects.web_folder.keys : o => o if o == "index.html" }
+
 resource "aws_instance" "my-instance" {
   ami = data.aws_ssm_parameter.this.value
   associate_public_ip_address = true
