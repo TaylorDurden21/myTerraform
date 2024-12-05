@@ -9,7 +9,9 @@ variable "static_web_S3" {
   default = false
 }
 
-variable "index_static_web_S3" {
+
+#Lien d'un dossier qui va être parcouru et ajouter au bucket S3
+variable "objet_to_upload" {
   description = "link for the index"
   type = string
 }

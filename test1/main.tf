@@ -15,8 +15,35 @@ module "S3" {
   source = "./module_s3"
   region = var.region
   static_web_S3 = true
-  index_static_web_S3 ="./web_source/index.html"
+  objet_to_upload = "./web_source"
 }
+
+data "aws_iam_policy" "name" {
+  
+}
+
+#Création d'un role pour l'EC2 pour prendre objet dans S3
+resource "aws_iam_role" "ec2role" {
+  name = ec2_s3_acess_role
+
+  #Creation de l'assumer policy du role
+  assume_role_policy = jsonencode({
+    Version : "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow",
+        Principal = {
+          Service = "ec2.amzonaws.com"
+        },
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+
+}
+
+
+
 
 resource "aws_instance" "my-instance" {
   ami = data.aws_ssm_parameter.this.value

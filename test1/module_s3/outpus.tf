@@ -4,3 +4,7 @@
 output "addrese_DNS_web_static_S3" {
   value = aws_s3_bucket_website_configuration.this[0].website_endpoint
 }
+
+output "bucket_id" {
+  value = aws_s3_bucket.this.id
+}
