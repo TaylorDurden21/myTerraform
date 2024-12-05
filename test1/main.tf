@@ -56,7 +56,7 @@ data "aws_s3_objects" "web_folder" {
 
 locals {
   #Tranforme une liste en map
-  string_map = {for item in data.data.aws_s3_objects.web_folder.keys : item => item}
+  string_map = {for item in data.aws_s3_objects.web_folder.keys : item => item}
 }
 
 data "aws_s3_object" "web_index"{
