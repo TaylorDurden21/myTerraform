@@ -40,7 +40,7 @@ resource "aws_iam_role" "ec2_role" {
 #Attache une policie AWS au role ec2_S3_access_role
 resource "aws_iam_role_policy_attachment" "ec2_s3_access_attachement" {
   role = aws_iam_role.ec2_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAcess"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
 }
 
 #Création d'un instance profile pour permettre d'être rattacher à l'EC2
@@ -48,8 +48,6 @@ resource "aws_iam_instance_profile" "ec2_instance_profile" {
   name = "ec2_instance_profile"
   role = aws_iam_role.ec2_role.name
 }
-
-
 
 resource "aws_instance" "my-instance" {
   ami = data.aws_ssm_parameter.this.value
