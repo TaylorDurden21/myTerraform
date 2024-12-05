@@ -59,6 +59,7 @@ locals {
   string_map = {for item in data.aws_s3_objects.web_folder.keys : item => item}
 }
 
+#Retourne les information de l'objet avec le nom index.html
 data "aws_s3_object" "web_index"{
   bucket = module.S3.bucket_name
   key =lookup(
@@ -82,6 +83,8 @@ resource "aws_instance" "my-instance" {
   sudo yum install -y httpd
   sudo systemctl start httpd
   sudo systemctl enable httpd
+  aws s3 cp s3://${aws_s3.object.web_index.id} /home/ec2-user/
+  sudo mv /home/ec2-user/index.html /var/www/html/
 
   EOF
 #Associer le droit sur le ec2 pour qu'il puissé télécharger sur le S3 
