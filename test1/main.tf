@@ -21,7 +21,6 @@ module "S3" {
 #Création d'un role pour l'EC2 pour prendre objet dans S3
 resource "aws_iam_role" "ec2_role" {
   name = "ec2_s3_acess_role"
-
   #Creation de l'assumer policy du role
   assume_role_policy = jsonencode({
     Version : "2012-10-17"
@@ -29,7 +28,7 @@ resource "aws_iam_role" "ec2_role" {
       {
         Effect = "Allow",
         Principal = {
-          Service = "ec2.amzonaws.com"
+          Service = "ec2.amazonaws.com"
         },
         Action = "sts:AssumeRole"
       }
