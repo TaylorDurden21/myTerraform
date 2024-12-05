@@ -54,16 +54,19 @@ data "aws_s3_objects" "web_folder" {
   bucket = module.S3.bucket_name
 }
 
+locals {
+  #Tranforme une liste en map
+  string_map = {for item in data.data.aws_s3_objects.web_folder.keys : item => item}
+}
+
 data "aws_s3_object" "web_index"{
   bucket = module.S3.bucket_name
   key =lookup(
-    #Transforme la liste de clefs en une map
-    {for o in data.aws_s3_objects.web_folder.keys : o => o },
+    local.string_map,
     "index.html",
     "not found"
   )
 }
-
 
 resource "aws_instance" "my-instance" {
   ami = data.aws_ssm_parameter.this.value
