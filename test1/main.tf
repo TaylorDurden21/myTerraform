@@ -77,6 +77,8 @@ resource "aws_instance" "my-instance" {
   instance_type = "t2.micro"
   iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
 
+
+  #utilisé les fonctions (perform dynamic operation) sur terraform pour mieux définir les user dats
   user_data = <<-EOF
   #!/bin/bash
   sudo yum update -y
@@ -85,7 +87,6 @@ resource "aws_instance" "my-instance" {
   sudo systemctl enable httpd
   aws s3 cp s3://${data.aws_s3_object.web_index.id} /home/ec2-user/
   sudo mv /home/ec2-user/index.html /var/www/html/
-
   EOF
 #Associer le droit sur le ec2 pour qu'il puissé télécharger sur le S3 
 #Télécharger le fichier sur le S3 
