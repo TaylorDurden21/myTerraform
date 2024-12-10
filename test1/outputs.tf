@@ -1,9 +1,11 @@
 output "ec2_ID" {
-  value = aws_instance.my-instance.id
+  description = "Id de ec2"
+  value = join(":", ["ID de mon ec2 est :", tostring(aws_instance.my-instance.id)]) 
 }
 
 output "s3_index_object_uri" {
-  value = data.aws_s3_object.web_index
+  description = "ID de objet"
+  value = data.aws_s3_object.web_index.id
 }
 
 output "testPrint" {

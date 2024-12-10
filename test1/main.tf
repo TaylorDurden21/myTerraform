@@ -88,9 +88,7 @@ resource "aws_instance" "my-instance" {
   aws s3 cp s3://${data.aws_s3_object.web_index.id} /home/ec2-user/
   sudo mv /home/ec2-user/index.html /var/www/html/
   EOF
-#Associer le droit sur le ec2 pour qu'il puissé télécharger sur le S3 
-#Télécharger le fichier sur le S3 
-# Le déplacer au bonne endroit sur le serveur web
+
 #Création d'un module de EC2 site web
   tags = {
     Name  = "My_EC2_generate_by_terraform" 
