@@ -2,9 +2,7 @@ provider "aws" {
   region = var.region
 }
 
-data "aws_ssm_parameter" "this" {
-  name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
-}
+
 
 module "vpc" {
   source = "./module_vpc"
