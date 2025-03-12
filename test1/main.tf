@@ -70,7 +70,7 @@ data "aws_ssm_parameter" "ami_id" {
 }
 
 resource "aws_instance" "my-instance" {
-  ami = data.aws_ssm_parameter.this.value
+  ami = data.aws_ssm_parameter.ami_id
   associate_public_ip_address = true
   subnet_id = module.vpc.subnet_id
   vpc_security_group_ids = [module.vpc.security_group_id]
