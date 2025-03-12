@@ -2,8 +2,6 @@ provider "aws" {
   region = var.region
 }
 
-
-
 module "vpc" {
   source = "./module_vpc"
   region = var.region
@@ -65,6 +63,10 @@ data "aws_s3_object" "web_index"{
     "index.html",
     "not found"
   )
+}
+
+data "aws_ssm_parameter" "ami_id" {
+  name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
 }
 
 resource "aws_instance" "my-instance" {
