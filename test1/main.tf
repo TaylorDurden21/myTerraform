@@ -1,5 +1,7 @@
 provider "aws" {
   region = var.region
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 
 module "vpc" {
@@ -10,7 +12,6 @@ module "vpc" {
 module "S3" {
   source = "./module_s3"
   region = var.region
-  static_web_S3 = true
   objet_to_upload = "./web_source"
 }
 
@@ -76,7 +77,6 @@ resource "aws_instance" "my-instance" {
   vpc_security_group_ids = [module.vpc.security_group_id]
   instance_type = "t2.micro"
   iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
-
 
   #utilisé les fonctions (perform dynamic operation) sur terraform pour mieux définir les user dats
   user_data = <<-EOF

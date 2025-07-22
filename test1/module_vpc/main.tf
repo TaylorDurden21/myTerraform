@@ -1,7 +1,3 @@
-provider "aws" {
-    region = var.region
-}
-
 resource "aws_vpc" "this" {
   cidr_block = "10.0.0.0/16"
 }
@@ -29,9 +25,9 @@ resource "aws_route_table" "this" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.this.id
   }
-
   tags = {
     name = "MainRouteTable"
+    create-by = terraform
   }
 }
 
