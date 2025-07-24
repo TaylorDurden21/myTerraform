@@ -5,10 +5,10 @@ variable "region" {
 
 variable "access_key" {
   type = string
-  default = "AKIAQ3EGQTAERRLIXSJP"
+  default = """
 }
 
 variable "secret_key" {
   type = string
-  default = "spCbxYa4yPHT5gRB+cDG9aj8O3K+0StdMKmOm27h"
+  default = ""
 }

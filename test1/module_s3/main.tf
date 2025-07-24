@@ -15,3 +15,5 @@ resource "aws_s3_object" "upload_object" {
 
 
 # Mise ne place d'une clef KMS pour le chiffrement
+
+
